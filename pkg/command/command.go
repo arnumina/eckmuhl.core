@@ -40,13 +40,13 @@ type (
 )
 
 // UnixToTime AFAIRE.
-func UnixToTime(uts string) (time.Time, error) {
-	t, err := strconv.ParseInt(uts, 10, 64)
+func UnixToTime(unix string) time.Time {
+	ts, err := strconv.ParseInt(unix, 0, 64)
 	if err != nil {
-		return time.Now(), err
+		ts = 0
 	}
 
-	return time.Unix(t, 0).Local(), nil
+	return time.Unix(ts, 0).Local()
 }
 
 func (cf *CmdFlag) printUsage() {
